@@ -1,4 +1,4 @@
-package com.example.flutter_fire_playground
+package jp.co.altive.flutterfireplayground
 
 import io.flutter.embedding.android.FlutterActivity
 
