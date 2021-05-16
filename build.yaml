@@ -1,0 +1,21 @@
+targets:
+    $default:
+      builders:
+        # docs: https://pub.dev/packages/json_serializable
+        json_serializable:
+          generate_for:
+            include:
+              - lib/**/*_state.dart
+              - lib/**/*_entity.dart
+              - lib/**/*_result.dart
+              - lib/**/*_parameter.dart
+          options:
+            checked: true
+            explicit_to_json: true
+        freezed:
+          generate_for:
+            include:
+              - lib/**/*_state.dart
+              - lib/**/*_entity.dart
+              - lib/**/*_response.dart
+              - lib/**/*_parameter.dart
