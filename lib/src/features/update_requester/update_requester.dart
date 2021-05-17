@@ -5,6 +5,7 @@ import 'package:version/version.dart';
 
 import '../../top_level_providers/package_info_provider.dart';
 import '../../top_level_providers/remote_config_provider.dart';
+import '../../utils/utils.dart';
 import 'update_info_entity.dart';
 
 enum UpdateRequestType {
@@ -30,6 +31,7 @@ final updateRequesterProvider = FutureProvider<UpdateRequestType>((ref) async {
 
   // キーを指定して文字列として取得
   final string = remoteConfig.getString(_key);
+  logger.fine(string);
   if (string.isEmpty) {
     return UpdateRequestType.not;
   }
