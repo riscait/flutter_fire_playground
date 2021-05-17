@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_analytics: ^8.0.3
+  firebase_auth: ^1.1.4
   firebase_core: ^1.1.0
   firebase_remote_config: ^0.10.0-dev.2
   flutter_hooks: ^0.16.0

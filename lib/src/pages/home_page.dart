@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+import 'auth_page.dart';
 import 'version_check_page.dart';
 
 class HomePage extends HookWidget {
@@ -36,6 +37,10 @@ class HomePage extends HookWidget {
                 ListTile(
                   title: const Text('Version Check Page'),
                   onTap: () => _navigateToPage(const VersionCheckPage()),
+                ),
+                ListTile(
+                  title: const Text('Authentication Page'),
+                  onTap: () => _navigateToPage(const AuthPage()),
                 ),
               ],
             ),
