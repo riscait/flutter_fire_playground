@@ -22,28 +22,35 @@ class VersionCheckPage extends HookWidget {
             data: (requestType) {
               WidgetsBinding.instance!.addPostFrameCallback((_) {
                 if (requestType != UpdateRequestType.not) {
+                  // 新しいアプリバージョンがある場合はダイアログを表示する
                   showDialog<void>(
                     context: context,
+                    barrierDismissible: false,
                     builder: (context) {
-                      return SimpleDialog(
-                        title: const Text('最新の更新があります。\nアップデートをお願いします。'),
-                        children: [
-                          if (requestType == UpdateRequestType.cancelable)
-                            SimpleDialogOption(
-                              onPressed: () => Navigator.of(context).pop(),
-                              child: const Text('キャンセル'),
+                      return WillPopScope(
+                        // AndroidのBackボタンで閉じられないようにする
+                        onWillPop: () async => false,
+                        child: AlertDialog(
+                          title: const Text('最新の更新があります。\nアップデートをお願いします。'),
+                          actions: [
+                            if (requestType == UpdateRequestType.cancelable)
+                              TextButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: const Text('キャンセル'),
+                              ),
+                            TextButton(
+                              onPressed: () {
+                                // FIXME: App Store or Google Play に飛ばす
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Jump to Store.')),
+                                );
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('アップデート'),
                             ),
-                          SimpleDialogOption(
-                            onPressed: () {
-                              // FIXME: App Store or Google Play に飛ばす
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Jump to Store.')),
-                              );
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text('アップデート'),
-                          ),
-                        ],
+                          ],
+                        ),
                       );
                     },
                   );
