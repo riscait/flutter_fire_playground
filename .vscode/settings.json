@@ -1,5 +1,13 @@
 {
     "dart.flutterSdkPath": ".fvm/flutter_sdk",
+	// Remove .fvm files from search
+	"search.exclude": {
+		"**/.fvm": true
+	},
+	// Remove from file watching
+	"files.watcherExclude": {
+		"**/.fvm": true
+	},
 	// ブレークポイントがヒットしたときに自動的にデバッグビューが表示されるようにします。
     // この設定はグローバルであり、言語ごとに設定することはできません。
 	"debug.openDebug": "openOnDebugBreak",
